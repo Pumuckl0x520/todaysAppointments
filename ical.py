@@ -2,9 +2,9 @@ import requests
 import re
 from datetime import datetime, timedelta
 
-#url = 'https://calendar.google.com/calendar/ical/projektspeicher.org_3732353332383036393330%40resource.calendar.google.com/#private-500f914cfff9c160b976e45d9ff7e711/basic.ics'
 
-url = 'https://calendar.google.com/calendar/ical/js%40mausbrand.de/private-2e1568b65e088b380174f95257c4a2bb/basic.ics'
+#change with your online ics file
+url = 'https://calendar.google.com/calendar/ical/[..]/[..]/basic.ics'
 
 ical_data = requests.get(url).text
 
@@ -12,8 +12,6 @@ event_pattern = re.compile(r'BEGIN:VEVENT(.*?)END:VEVENT', re.DOTALL)
 events = event_pattern.findall(ical_data)
 
 today = datetime.now().date() #Date without time
-tomorrow = today + timedelta(days=1)
-#today_date = today.date()
 
 now = datetime.now()
 date_time = now.strftime("%d.%m.%Y / %H:%M")
